@@ -43,6 +43,24 @@ app.get('/files', (req, res) => {
         res.status(200).json({ files: textFiles });
     });
 });
+app.get('/list-files', (req, res) => {
+    fs.readdir(folderPath, (err, files) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error reading directory', error: err });
+        }
+        const fileList = files.map(file => {
+            const filePath = path.join(folderPath, file);
+            const stats = fs.statSync(filePath);
+            return {
+                filename: file,
+                createdAt: stats.birthtime,
+                updatedAt: stats.mtime
+            };
+        });
+        res.status(200).json(fileList);
+    });
+});
+
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
