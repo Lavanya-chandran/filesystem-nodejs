@@ -1,0 +1,16 @@
+{
+  "name": "nodejs-1",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "author": "lavanya",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.20.0",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  }
+}
